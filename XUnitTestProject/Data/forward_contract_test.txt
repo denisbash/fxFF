@@ -1,0 +1,14 @@
+﻿{'forwardRate': 
+{'currency1': {'currencyScheme': 'USD'}, 'currency2': 
+{'currencyScheme': 'CAD'},'quoteBasis': {'currency1PerCurrency2': '2.0',
+'currency2PerCurrency1': '0.5'}, 'rate': '1.23'}, 
+'id': '123',
+'notionalAmount': {'id': '124', 'currency': {'currencyScheme':'USD'}, 'amount': '2.456'}, 
+'executionPeriodDates': {'id': '44', 'startDate': '2017-01-01', 'expiryDate':'2017-07-01', 'businessCenters':
+[{'businessCenterScheme': 'abc', 'id': '567'}, {'businessCenterScheme': 'xyz', 'id': '678'}]},
+'earliestExecutionTime': {'hourMinuteTime': '9:00:00', 'businessCenter': {'businessCenterScheme': 'abc', 'id': '567'}
+}, 'latestExecutionTime': {'hourMinuteTime': '16:00', 'businessCenter':{'businessCenterScheme': 'xyz', 'id': '678'}},
+'buyerSellerModel':{'buyerPartyReference':{'href':'aaa', 'id':'89'}, 
+'sellerPartyReference':{'href':'bbb', 'id':'78'}},
+'putCallCurrencyModel':{'putCurrency':{'currencyScheme':'USD'}, 
+'callCurrency':{'currencyScheme':'CAD'}}}

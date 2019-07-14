@@ -1,0 +1,1 @@
+{"123":[{"date":"2017-03-03T00:00:00","contractId":123,"paymentType":"Call","sender":{"href":"aaa"},"receiver":{"href":"bbb"},"amount":{"currency":{"currencyScheme":"CAD"},"amount":500.0}},{"date":"2017-03-03T00:00:00","contractId":123,"paymentType":"Call","sender":{"href":"aaa"},"receiver":{"href":"bbb"},"amount":{"currency":{"currencyScheme":"CAD"},"amount":500.0}}]}
