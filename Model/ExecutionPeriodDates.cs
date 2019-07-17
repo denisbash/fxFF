@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 
 namespace Model
 {
     public class ExecutionPeriodDates: BaseFinType, IValidable
     {
-        public int id { get; set; }
-
-        public DateTime startDate { get; set; }
-        public DateTime expiryDate { get; set; }
+        [DataMember(Name ="id")]
+        public int Id { get; set; }
+        [DataMember(Name ="startDate")]
+        public DateTime StartDate { get; set; }
+        [DataMember(Name ="expiryDate")]
+        public DateTime ExpiryDate { get; set; }
 
         private BusinessCenter[] _businessCenters;
-        public BusinessCenter[] businessCenters
+        [DataMember(Name ="businessCenters")]
+        public BusinessCenter[] BusinessCenters
         {
             get => _businessCenters;
             set
@@ -31,7 +35,7 @@ namespace Model
         public void Validate()
         {
             CheckForNull();
-            if (startDate >= expiryDate)
+            if (StartDate >= ExpiryDate)
             {
                 throw new Exception("Start date cannot follow expiry date");
             }

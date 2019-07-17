@@ -1,7 +1,9 @@
-﻿namespace Model
+﻿using System.Runtime.Serialization;
+
+namespace Model
 {
     public class SellerPartyReference: Reference
     {
-        public string href { get; set; }
+        
     }
 }

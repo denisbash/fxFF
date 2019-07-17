@@ -11,7 +11,7 @@ namespace Model
         private Reference _receiver;
         private Amount _amount;
         private DateTime? _date;
-        public DateTime? date
+        public DateTime? Date
         {
             get => _date;
             set
@@ -26,10 +26,12 @@ namespace Model
                 }
             }
         }
-        public int? contractId { get; set; }
-        public string paymentType { get; set; }
-
-        public Reference sender
+        [DataMember(Name ="contractId")]
+        public int? ContractId { get; set; }
+        [DataMember(Name ="paymentType")]
+        public string PaymentType { get; set; }
+        [DataMember(Name ="sender")]
+        public Reference Sender
         {
             get => _sender;
             set
@@ -41,7 +43,8 @@ namespace Model
                 }
             }
         }
-        public Reference receiver
+        [DataMember(Name ="receiver")]
+        public Reference Receiver
         {
             get => _receiver;
             set
@@ -53,8 +56,8 @@ namespace Model
                 }
             }
         }
-
-        public Amount amount
+        [DataMember(Name ="amount")]
+        public Amount Amount
         {
             get => _amount;
             set
@@ -71,7 +74,7 @@ namespace Model
         {
             CheckForNull();
             InvokeValidationEvent();
-            if (!Enum.TryParse(paymentType, out PaymentTypes payType))
+            if (!Enum.TryParse(PaymentType, out PaymentTypes payType))
             {
                 throw new Exception("Invalid type of payment");
             }
@@ -85,25 +88,25 @@ namespace Model
         public bool IsConsistentWithContract(IContract contract)
         {
             bool isConsistent = true;
-            if (contractId != contract.id)
+            if (ContractId != contract.Id)
             {
                 isConsistent = false;
             }
-            if (!(sender.Equals(contract.buyerSellerModel.buyerPartyReference) &&
-                receiver.Equals(contract.buyerSellerModel.sellerPartyReference)))
+            if (!(Sender.Equals(contract.BuyerSellerModel.BuyerPartyReference) &&
+                Receiver.Equals(contract.BuyerSellerModel.SellerPartyReference)))
             {
                 isConsistent = false;
             }
-            if (contract.executionPeriodDates.startDate > date.Value ||
-                contract.executionPeriodDates.expiryDate < date.Value)
+            if (contract.ExecutionPeriodDates.StartDate > Date.Value ||
+                contract.ExecutionPeriodDates.ExpiryDate < Date.Value)
             {
                 isConsistent = false;
             }
-            if (!amount.currency.Equals(contract.currency))
+            if (!Amount.Currency.Equals(contract.Currency))
             {
                 isConsistent = false;
             }
-            if (amount.amount > contract.remainingAmount)
+            if (Amount.amount > contract.RemainingAmount)
             {
                 isConsistent = false;
             }

@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Model
 {
     public class BuyerSellerModel: BaseFinType, IValidable
     {
         private Reference _buyerPartyReference;
-        public Reference buyerPartyReference
+        [DataMember(Name ="buyerPartyReference")]
+        public Reference BuyerPartyReference
         {
             get => _buyerPartyReference;
             set
@@ -19,7 +21,8 @@ namespace Model
         }
 
         private Reference _sellerPartyReference;
-        public Reference sellerPartyReference
+        [DataMember(Name ="sellerPartyReference")]
+        public Reference SellerPartyReference
         { get => _sellerPartyReference;
             set
             {

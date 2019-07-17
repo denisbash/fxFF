@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,11 +9,13 @@ namespace Model
 {
     public class FloatingForward : BaseFinType, IValidable, IContract
     {
-        public int? id { get; set; }
+        public int? Id { get; set; }
         [IgnoreDataMember]
-        public Currency currency => putCallCurrencyModel.callCurrency;
+        public Currency Currency => PutCallCurrencyModel.CallCurrency;
+
         private ForwardRate _forwardRate;
-        public ForwardRate forwardRate
+        [DataMember(Name ="forwardRate")]
+        public ForwardRate ForwardRate
         {
             get => _forwardRate;
             set
@@ -27,7 +30,8 @@ namespace Model
             
         }
         private ExecutionTime _earliestExecutionTime;
-        public ExecutionTime earliestExecutionTime
+        [DataMember(Name ="earliestExecutionTime")]
+        public ExecutionTime EarliestExecutionTime
         {
             get => _earliestExecutionTime;
             set
@@ -41,7 +45,8 @@ namespace Model
         }
 
         private ExecutionTime _latestExecutionTime;
-        public ExecutionTime latestExecutionTime
+        [DataMember(Name ="latestExecutionTime")]
+        public ExecutionTime LatestExecutionTime
         {
             get => _latestExecutionTime;
             set
@@ -56,7 +61,8 @@ namespace Model
         }
 
         private Amount _notionalAmount;
-        public Amount notionalAmount
+        [DataMember(Name ="notionalAmount")]
+        public Amount NotionalAmount
         {
             get => _notionalAmount;
             set
@@ -70,7 +76,8 @@ namespace Model
         }
 
         private ExecutionPeriodDates _executionPeriodDates;
-        public ExecutionPeriodDates executionPeriodDates
+        [DataMember(Name ="executionPeriodDates")]
+        public ExecutionPeriodDates ExecutionPeriodDates
         {
             get => _executionPeriodDates;
             set
@@ -84,7 +91,8 @@ namespace Model
         }
 
         private PutCallCurrencyModel _putCallCurrencyModel;
-        public PutCallCurrencyModel putCallCurrencyModel
+        [JsonProperty(PropertyName ="putCallCurrency.model")]
+        public PutCallCurrencyModel PutCallCurrencyModel
         {
             get => _putCallCurrencyModel;
             set
@@ -98,7 +106,8 @@ namespace Model
         }
 
         private BuyerSellerModel _buyerSellerModel;
-        public BuyerSellerModel buyerSellerModel
+        [JsonProperty(PropertyName ="buyerSeller.model")]
+        public BuyerSellerModel BuyerSellerModel
         {
             get => _buyerSellerModel;
             set
@@ -112,24 +121,24 @@ namespace Model
         }
 
         [IgnoreDataMember]
-        public float? remainingAmount { get; set; }
+        public float? RemainingAmount { get; set; }
 
         [OnDeserialized]
         public void ValidateAndFinalize(StreamingContext context)
         {
             Validate();
-            remainingAmount = notionalAmount.amount;
+            RemainingAmount = NotionalAmount.amount;
         }
 
         public void Validate()
         {
             CheckForNull();
-            if (earliestExecutionTime.IsGreater(latestExecutionTime))
+            if (EarliestExecutionTime.IsGreater(LatestExecutionTime))
             {
                 throw new Exception("Execution times are out of order");
             }
-            if (!(putCallCurrencyModel.putCurrency.Equals(forwardRate.currency1) &&
-                putCallCurrencyModel.callCurrency.Equals(forwardRate.currency2)))
+            if (!(PutCallCurrencyModel.PutCurrency.Equals(ForwardRate.Currency1) &&
+                PutCallCurrencyModel.CallCurrency.Equals(ForwardRate.Currency2)))
             {
                 throw new Exception("Currencies in forwardRate and putCallCurrencyModel" +
                     "do not match");

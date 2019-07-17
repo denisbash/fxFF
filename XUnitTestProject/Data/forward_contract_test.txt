@@ -8,7 +8,7 @@
 [{'businessCenterScheme': 'abc', 'id': '567'}, {'businessCenterScheme': 'xyz', 'id': '678'}]},
 'earliestExecutionTime': {'hourMinuteTime': '9:00:00', 'businessCenter': {'businessCenterScheme': 'abc', 'id': '567'}
 }, 'latestExecutionTime': {'hourMinuteTime': '16:00', 'businessCenter':{'businessCenterScheme': 'xyz', 'id': '678'}},
-'buyerSellerModel':{'buyerPartyReference':{'href':'aaa', 'id':'89'}, 
+'buyerSeller.model':{'buyerPartyReference':{'href':'aaa', 'id':'89'}, 
 'sellerPartyReference':{'href':'bbb', 'id':'78'}},
-'putCallCurrencyModel':{'putCurrency':{'currencyScheme':'USD'}, 
+'putCallCurrency.model':{'putCurrency':{'currencyScheme':'USD'}, 
 'callCurrency':{'currencyScheme':'CAD'}}}

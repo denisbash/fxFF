@@ -31,8 +31,8 @@ namespace Model
             }
         }
         
-        
-        public Currency currency1
+        [DataMember(Name ="currency1")]
+        public Currency Currency1
         {
             get => _currency1;
             set
@@ -40,12 +40,12 @@ namespace Model
                 if (_currency1 == null)
                 {
                     _currency1 = value;
-                    ValidationEvent += currency1.Validate;
+                    ValidationEvent += Currency1.Validate;
                 }
             }
         }
-        
-        public Currency currency2
+        [DataMember(Name ="currency2")]
+        public Currency Currency2
         {
             get => _currency2;
             set
@@ -53,12 +53,12 @@ namespace Model
                 if (_currency2 == null)
                 {
                     _currency2 = value;
-                    ValidationEvent += currency2.Validate;
+                    ValidationEvent += Currency2.Validate;
                 }
             }
         }
-        
-        public QuoteBasisEnum quoteBasis
+        [DataMember(Name ="quoteBasis")]
+        public QuoteBasisEnum QuoteBasis
         {
             get => _quoteBasis;
             set
@@ -72,12 +72,12 @@ namespace Model
         }
 
         
-        //[OnDeserialized]
+        
         public void Validate()
         {
             CheckForNull();
             InvokeValidationEvent();
-            if (Math.Abs((float)rate - (float)quoteBasis.GetRate()) >= epsilon)
+            if (Math.Abs((float)rate - (float)QuoteBasis.GetRate()) >= epsilon)
             {
 
             }

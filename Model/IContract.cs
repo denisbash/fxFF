@@ -1,15 +1,18 @@
-﻿namespace Model
+﻿using System.Runtime.Serialization;
+
+namespace Model
 {
     public interface IContract
     {
-        int? id { get; set; }
-        BuyerSellerModel buyerSellerModel { get; set; }
-        PutCallCurrencyModel putCallCurrencyModel { get; set; }
+        [DataMember(Name ="id")]
+        int? Id { get; set; }
+        BuyerSellerModel BuyerSellerModel { get; set; }
+        PutCallCurrencyModel PutCallCurrencyModel { get; set; }
 
-        ExecutionPeriodDates executionPeriodDates { get; set; }
-        
-        Currency currency { get; }
+        ExecutionPeriodDates ExecutionPeriodDates { get; set; }
+        [DataMember(Name ="currency")]
+        Currency Currency { get; }
 
-        float? remainingAmount { get; set; }
+        float? RemainingAmount { get; set; }
     }
 }

@@ -12,10 +12,7 @@ namespace Model
         public event ValidationDelegate ValidationEvent;
 
         public void InvokeValidationEvent()
-        {
-            //begin
-            var x = ValidationEvent;
-            //end
+        {            
             ValidationEvent.Invoke();
         }
         

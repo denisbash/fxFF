@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Model
 {
     public class QuoteBasisEnum: BaseFinType, IValidable
     {
-        public float? currency1PerCurrency2 { get; set; }
-        public float? currency2PerCurrency1 { get; set; }
+        [DataMember(Name ="currency1PerCurrency2")]
+        public float? Currency1PerCurrency2 { get; set; }
+        [DataMember(Name ="currency2PerCurrency1")]
+        public float? Currency2PerCurrency1 { get; set; }
         
         public void Validate()
         {
             CheckForNull();
-            if (currency1PerCurrency2 < 0 || currency2PerCurrency1 < 0
-                || Math.Abs((float)currency1PerCurrency2 * (float)currency2PerCurrency1 
+            if (Currency1PerCurrency2 < 0 || Currency2PerCurrency1 < 0
+                || Math.Abs((float)Currency1PerCurrency2 * (float)Currency2PerCurrency1 
                 - 1) > epsilon)
             {
                 throw new Exception("QuoteBasis is inconsistent");
@@ -20,7 +23,7 @@ namespace Model
 
         public float? GetRate()
         {
-            return currency2PerCurrency1;
+            return Currency2PerCurrency1;
         }
     }
 }

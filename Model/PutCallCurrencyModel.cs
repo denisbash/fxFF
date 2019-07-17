@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Model
 {
@@ -6,7 +7,8 @@ namespace Model
     {
         private Currency _putCurrency;
         private Currency _callCurrency;
-        public Currency putCurrency
+        [DataMember(Name ="putCurrency")]
+        public Currency PutCurrency
         {
             get => _putCurrency;
             set
@@ -18,8 +20,8 @@ namespace Model
                 }
             }
         }
-
-        public Currency callCurrency
+        [DataMember(Name ="callCurrency")]
+        public Currency CallCurrency
         {
             get=>_callCurrency;
             set

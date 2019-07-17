@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Model
@@ -8,7 +9,8 @@ namespace Model
     {
         
         private TimeSpan _hourMinuteTime;
-        public TimeSpan hourMinuteTime
+        [DataMember(Name ="hourMinuteTime")]
+        public TimeSpan HourMinuteTime
         {
             get => _hourMinuteTime;
             set
@@ -24,7 +26,8 @@ namespace Model
         public override TimeSpan Time => _hourMinuteTime;
 
         private BusinessCenter _businessCenter;
-        public BusinessCenter businessCenter
+        [DataMember(Name ="businessCenter")]
+        public BusinessCenter BusinessCenter
         {
             get => _businessCenter;
             set

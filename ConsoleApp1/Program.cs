@@ -58,13 +58,13 @@ namespace ConsoleApp1
         }
         private static void MakePayment(IContract contract, IPayment payment)
         {
-            if (contract.remainingAmount < payment.amount.amount)
+            if (contract.RemainingAmount < payment.Amount.amount)
             {
                 throw new Exception("There is not enough fund remaining");
             }
             else
             {
-                contract.remainingAmount -= payment.amount.amount;
+                contract.RemainingAmount -= payment.Amount.amount;
             }
         }
 
@@ -83,7 +83,7 @@ namespace ConsoleApp1
                 dictPay = dictCtors[0].Invoke(new object[] { });
             }
 
-            object[] prs = new object[] { (int)payment.contractId, null};
+            object[] prs = new object[] { (int)payment.ContractId, null};
             var getList = type.GetMethod("TryGetValue");
             getList?.Invoke(dictPay, prs);
 
@@ -96,12 +96,12 @@ namespace ConsoleApp1
 
             
             //remove the old item from the dictionary
-            object[] prmsRemove = new object[] { (int)payment.contractId };
+            object[] prmsRemove = new object[] { (int)payment.ContractId };
             var removeMethod = type.GetMethod("Remove", new[] { type.GetGenericArguments()[0]});
             removeMethod?.Invoke(dictPay, prmsRemove);
 
             //add new item to the dictionary
-            object[] prmsAdd = new object[] { (int)payment.contractId, newList };
+            object[] prmsAdd = new object[] { (int)payment.ContractId, newList };
             var addToDictMethod = type.GetMethod("Add");
             addToDictMethod?.Invoke(dictPay, prmsAdd);
 
@@ -117,7 +117,7 @@ namespace ConsoleApp1
             var totDict = File.ReadAllText(_dbContractsFilePath);
             var dictCont = JsonConvert.DeserializeObject(totDict, type);            
 
-            object[] prms = new object[] { (int)contract.id, contract };
+            object[] prms = new object[] { (int)contract.Id, contract };
             var addMethod = type.GetMethod("Add");
             addMethod?.Invoke(dictCont, prms);            
                 
